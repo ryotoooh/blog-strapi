@@ -26,7 +26,7 @@ const router = new VueRouter({
       components: require("./containers/Article.vue")
     },
     {
-      path: "/category/:id",
+      path: "/category/:name",
       components: require("./containers/Category.vue")
     }
   ]

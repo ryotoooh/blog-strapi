@@ -13,8 +13,8 @@
         <ul class="uk-navbar-nav">
           <li v-for="category in categories" v-bind:key="category.id">
             <router-link
-              :to="{ path: '/category/' + category.id }"
-              :key="category.id"
+              :to="{ path: '/category/' + category.name }"
+              :key="category.name"
             >
               {{ category.name }}
             </router-link>

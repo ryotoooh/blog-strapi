@@ -2,9 +2,9 @@
   <div>
     <div class="uk-section">
       <div class="uk-container uk-container-large">
-        <h1>{{ category.name }}</h1>
+        <h1>{{ categories[0].name }}</h1>
 
-        <ArticlesList :articles="category.articles || []"></ArticlesList>
+        <ArticlesList :articles="categories[0].articles || []"></ArticlesList>
       </div>
     </div>
   </div>
@@ -13,22 +13,21 @@
 <script>
 import ArticlesList from "../containers/ArticlesList";
 import gql from "graphql-tag";
-
 export default {
   data() {
     return {
-      category: [],
-      routeParam: this.$route.params.id
+      categories: [[]],
+      routeParam: this.$route.params.name
     };
   },
   components: {
     ArticlesList
   },
   apollo: {
-    category: {
+    categories: {
       query: gql`
-        query Category($id: ID!) {
-          category(id: $id) {
+        query Categories($name: String!) {
+          categories(where:{name: $name}) {
             name
             articles {
               id
@@ -46,7 +45,7 @@ export default {
         }
       `,
       variables() {
-        return { id: this.routeParam };
+        return { name: this.routeParam };
       }
     }
   }
